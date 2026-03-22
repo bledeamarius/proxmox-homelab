@@ -23,16 +23,3 @@ sudo apt-get install -y docker-compose-plugin
 sudo mkdir -p /opt/docker
 sudo chown debian:debian /opt/docker
 
-# sudo docker rm -f pihole 2>/dev/null || true
-
-# sudo docker run -d \
-#   --name pihole \
-#   --restart unless-stopped \
-#   --network host \
-#   -e TZ=Europe/Bucharest \
-#   -e FTLCONF_webserver_api_password='YourPassword123' \
-#   -v /opt/pihole/etc:/etc/pihole \
-#   -v /opt/pihole/dnsmasq.d:/etc/dnsmasq.d \
-#   --cap-add NET_ADMIN \
-#   pihole/pihole:latest
-
