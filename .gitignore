@@ -1,0 +1,76 @@
+# --- Terraform core ---
+
+# Local .terraform directories (providers, modules, etc.)
+**/.terraform/*
+
+# Terraform state files (can contain secrets)
+*.tfstate
+*.tfstate.*
+
+# Terraform crash logs
+crash.log
+crash.*.log
+
+# Terraform plans
+*.tfplan
+
+# Terraform variable files (often contain secrets)
+*.tfvars
+*.tfvars.json
+*.auto.tfvars
+
+# Terraform override files (local-only tweaks)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform CLI config
+.terraformrc
+terraform.rc
+
+# Optional: Terraform lock file (ignore if you don’t care about pinning providers)
+.terraform.lock.hcl
+
+# Terraform workspaces/state dir
+terraform.tfstate.d/
+
+# Terragrunt cache (if you ever use it)
+.terragrunt-cache/
+.terraform.d/
+
+# --- Secrets & env files ---
+
+# Generic env/secret files
+.env
+.env.*
+secrets.*
+*secrets*.tfvars
+*secret*.tfvars
+
+# --- OS / Editor / Tools ---
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Vim / editors
+*.swp
+*.swo
+*~
+*.tmp
+*.temp
+
+# VS Code / JetBrains
+.vscode/
+.idea/
+
+# Logs & backups
+*.log
+*.bak
+*.backup
