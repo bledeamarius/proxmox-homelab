@@ -1,5 +1,6 @@
 locals {
   ssh_path = "~/.ssh/id"
+  proxmox_url = "${var.host_address_prefix}.10"
   vm_template = {
     id        = 9009
     name      = "debian-12-template"

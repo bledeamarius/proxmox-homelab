@@ -1,9 +1,4 @@
 # Proxmox connection (supply via env vars or .auto.tfvars)
-variable "pm_api_url" {
-  description = "Proxmox API URL"
-  type        = string
-}
-
 variable "pm_api_token_id" {
   description = "Proxmox API token ID"
   type        = string
@@ -23,11 +18,6 @@ variable "target_node" {
   default     = "proxmox"
 }
 
-variable "proxmox_url" {
-  description = "Proxmox IP for SSH access during provisioning"
-  type        = string
-}
-
 variable "vm_template" {
   description = "Cloud-init template to clone"
   type        = string
@@ -37,4 +27,25 @@ variable "vm_template" {
 variable "host_address_prefix" {
   description = "IP address prefix for VMs (e.g. '192.168.1')"
   type        = string
+}
+
+variable "pihole_password" {
+  description = "Password for Pi-hole web interface"
+  type        = string
+  sensitive   = true
+}
+
+variable "nextcloud_db_password" {
+  type      = string
+  sensitive = true
+}
+
+variable "nextcloud_admin_user" {
+  type    = string
+  default = "admin"
+}
+
+variable "nextcloud_admin_password" {
+  type      = string
+  sensitive = true
 }

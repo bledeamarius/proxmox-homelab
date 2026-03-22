@@ -1,0 +1,13 @@
+- Homelab:
+    - Pi-hole:
+        href: http://homelab.internal/admin
+        description: Network ad blocker & DNS
+        icon: pi-hole.png
+    - Portainer:
+        href: http://homelab.internal:9000
+        description: Docker management
+        icon: portainer.png
+    - Homepage:
+        href: http://homelab.internal:3000
+        description: This dashboard
+        icon: homepage.png
