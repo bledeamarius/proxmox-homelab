@@ -125,6 +125,13 @@ resource "null_resource" "provision_docker_host" {
     destination = "/tmp/provision.sh"
   }
 
+  # You need to create an .env file with any variables your provisioning script needs
+  # For pihole, I have FTLCONF_webserver_api_password
+  provisioner "file" {
+    source      = "${path.module}/docker/.env"
+    destination = "/tmp/docker.env"
+  }
+
   connection {
     type        = "ssh"
     user        = "debian"

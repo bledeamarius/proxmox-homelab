@@ -5,7 +5,6 @@ services:
     network_mode: host
     environment:
       TZ: Europe/Bucharest
-      FTLCONF_webserver_api_password: 'YourPassword123'
     volumes:
       - /opt/pihole/etc:/etc/pihole
       - /opt/pihole/dnsmasq.d:/etc/dnsmasq.d
