@@ -34,10 +34,10 @@ resource "terraform_data" "docker_compose_sync" {
     source      = local_file.docker_compose_rendered.filename
     destination = "/opt/docker/docker-compose.yml"
   }
-#   provisioner "file" {
-#     source      = "${path.module}/docker/homepage/"
-#     destination = "/opt/homepage/config"
-#   }
+  provisioner "file" {
+    source      = "${path.module}/docker/homepage/"
+    destination = "/opt/homepage/config"
+  }
   provisioner "remote-exec" {
     inline = [
       "cd /opt/docker && docker compose up -d --no-recreate"
