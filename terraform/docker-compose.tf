@@ -1,8 +1,8 @@
 locals {
   docker_compose = templatefile("${path.module}/docker/docker-compose.yaml.tftpl", {
-    pihole_password = var.pihole_password
-    docker_host     = local.docker_host
-    proxmox_url     = local.proxmox_url
+    pihole_password          = var.pihole_password
+    docker_host              = local.docker_host
+    proxmox_url              = local.proxmox_url
     nextcloud_db_password    = var.nextcloud_db_password
     nextcloud_admin_user     = var.nextcloud_admin_user
     nextcloud_admin_password = var.nextcloud_admin_password
