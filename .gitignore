@@ -74,5 +74,3 @@ $RECYCLE.BIN/
 *.log
 *.bak
 *.backup
-
-.rendered/

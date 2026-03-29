@@ -67,7 +67,7 @@ resource "terraform_data" "attach_cloudinit_drive" {
   connection {
     type        = "ssh"
     user        = "root"
-    host        = local.proxmox_url      # e.g. "192.168.1.10"
+    host        = var.proxmox_url      # e.g. "192.168.1.10"
     private_key = file(local.ssh_path) # e.g. "~/.ssh/id_rsa"
   }
 
@@ -109,13 +109,13 @@ resource "terraform_data" "attach_cloudinit_drive" {
   }
 }
 
-resource "terraform_data" "provision_docker_host" {
+resource "null_resource" "provision_docker_host" {
   depends_on = [
     terraform_data.attach_cloudinit_drive,
     proxmox_vm_qemu.docker_host
   ]
 
-  triggers_replace = {
+  triggers = {
     vm_id       = proxmox_vm_qemu.docker_host.id
     script_hash = filesha256(local.provision_script_path)
   }
@@ -125,11 +125,22 @@ resource "terraform_data" "provision_docker_host" {
     destination = "/tmp/provision.sh"
   }
 
+  # You need to create an .env file with any variables your provisioning script needs
+  # For pihole, I have FTLCONF_webserver_api_password
+  provisioner "file" {
+    source      = "${path.module}/docker/.env"
+    destination = "/tmp/docker.env"
+  }
+
   connection {
     type        = "ssh"
     user        = "debian"
     host        = local.docker_host.ip_address
     private_key = file(local.ssh_path)
+
+    # bastion_host        = var.proxmox_url
+    # bastion_user        = "root"
+    # bastion_private_key = file(local.ssh_path)
   }
 
   provisioner "remote-exec" {

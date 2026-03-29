@@ -23,8 +23,3 @@ sudo apt-get install -y docker-compose-plugin
 sudo mkdir -p /opt/docker
 sudo chown debian:debian /opt/docker
 
-sudo mkdir -p /opt/portainer/data
-
-sudo mkdir -p /opt/homepage/config
-
-sudo mkdir -p /opt/nextcloud/db /opt/nextcloud/data

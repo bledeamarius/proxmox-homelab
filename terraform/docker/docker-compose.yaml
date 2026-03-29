@@ -1,0 +1,20 @@
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    network_mode: host
+    environment:
+      TZ: Europe/Bucharest
+    volumes:
+      - /opt/pihole/etc:/etc/pihole
+      - /opt/pihole/dnsmasq.d:/etc/dnsmasq.d
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+
+  # service2:
+  #   image: someimage:latest
+  #   container_name: service2
+  #   ports:
+  #     - "8080:8080"
+  #   restart: unless-stopped

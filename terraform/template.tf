@@ -7,7 +7,7 @@ resource "terraform_data" "create_vm_template" {
   connection {
     type        = "ssh"
     user        = "root"
-    host        = local.proxmox_url      # e.g. "192.168.1.10"
+    host        = var.proxmox_url      # e.g. "192.168.1.10"
     private_key = file(local.ssh_path) # e.g. "~/.ssh/id_rsa"
   }
 
