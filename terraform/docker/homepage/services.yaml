@@ -1,8 +1,11 @@
-- Homelab:
+- Network:
     - Pi-hole:
         href: http://homelab.internal/admin
         description: Network ad blocker & DNS
         icon: pi-hole.png
+        server: my-docker
+        container: pihole
+- Homelab:
     - Portainer:
         href: http://homelab.internal:9000
         description: Docker management
@@ -11,3 +14,34 @@
         href: http://homelab.internal:3000
         description: This dashboard
         icon: homepage.png
+- Media:
+    - Jellyfin:
+        href: http://homelab.internal:8096
+        icon: jellyfin.png
+        description: Media streaming
+        server: my-docker
+        container: jellyfin
+
+    - Radarr:
+        href: http://homelab.internal:7878
+        icon: radarr.png
+        server: my-docker
+        container: radarr
+
+    - Sonarr:
+        href: http://homelab.internal:8989
+        icon: sonarr.png
+        server: my-docker
+        container: sonarr
+
+    - qBittorrent:
+        href: http://homelab.internal:8090
+        icon: qbittorrent.png
+        server: my-docker
+        container: qbittorrent
+
+    - Prowlarr:
+        href: http://homelab.internal:9696
+        icon: prowlarr.png
+        server: my-docker
+        container: prowlarr

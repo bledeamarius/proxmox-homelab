@@ -5,7 +5,7 @@ cloud-init status --wait
 
 sudo apt update && sudo apt upgrade -y
 
-# ✅ Disable systemd-resolved — conflicts with Pi-hole on port 53
+# Disable systemd-resolved — conflicts with Pi-hole on port 53
 sudo systemctl disable --now systemd-resolved || true
 sudo rm -f /etc/resolv.conf
 echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf
@@ -28,3 +28,11 @@ sudo mkdir -p /opt/portainer/data
 sudo mkdir -p /opt/homepage/config
 
 sudo mkdir -p /opt/nextcloud/db /opt/nextcloud/data
+
+sudo mkdir -p /opt/jellyfin/config /opt/jellyfin/cache /mnt/media
+
+sudo mkdir -p /mnt/media/{movies,shows,downloads}
+sudo mkdir -p /opt/{qbittorrent,prowlarr,radarr,sonarr}/config
+
+sudo chmod -R 755 /mnt/media
+sudo chown -R 1000:1000 /mnt/media

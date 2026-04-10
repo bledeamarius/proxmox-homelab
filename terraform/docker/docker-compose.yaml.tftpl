@@ -35,12 +35,22 @@ services:
       - "3000:3000"
     volumes:
       - /opt/homepage/config:/app/config
-      - /var/run/docker.sock:/var/run/docker.sock  # auto-discovers containers
     environment:
       PUID: 1000
       PGID: 1000
       HOMEPAGE_ALLOWED_HOSTS: ${docker_host.ip_address}:3000,homelab.internal:3000
-    
+  
+  # So that Homepage can autodiscover containers
+  socket-proxy:
+    image: lscr.io/linuxserver/socket-proxy:latest
+    container_name: socket-proxy
+    environment:
+      - CONTAINERS=1
+      - INFO=1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+
 ## NextCloud
   nextcloud-db:
     image: postgres:16-alpine
@@ -79,3 +89,81 @@ services:
       - "8080:80"
     restart: unless-stopped
 ## End NextCloud
+
+# qbittorrent
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - WEBUI_PORT=8090
+      - TZ=Etc/EET
+    volumes:
+      - /opt/qbittorrent/config:/config
+      - /mnt/media/downloads:/downloads
+    ports:
+      - "8090:8090"
+      - "6881:6881/tcp"
+      - "6881:6881/udp"
+    restart: unless-stopped
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    volumes:
+      - /opt/prowlarr/config:/config
+    ports:
+      - "9696:9696"
+    restart: unless-stopped
+
+  # Required for prowlarr to solve 1337x.to
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=info
+    ports:
+      - "8191:8191"
+    restart: unless-stopped
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /opt/radarr/config:/config
+      - /mnt/media:/media        # same root as Jellyfin
+      - /mnt/media/downloads:/downloads
+    ports:
+      - "7878:7878"
+    restart: unless-stopped
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /opt/sonarr/config:/config
+      - /mnt/media:/media
+      - /mnt/media/downloads:/downloads
+    ports:
+      - "8989:8989"
+    restart: unless-stopped
+  
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - JELLYFIN_PublishedServerUrl=http://jellyfin.homelab.internal
+    volumes:
+      - /opt/jellyfin/config:/config
+      - /opt/jellyfin/cache:/cache
+      - /mnt/media:/media:ro 
+    ports:
+      - "8096:8096"
+    restart: unless-stopped
