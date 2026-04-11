@@ -14,6 +14,6 @@ locals {
   docker_host = {
     name       = "docker-host"
     ip_address = "${var.host_address_prefix}.50"
-    disk_size  = "40G"
+    disk_size  = "200G"
   }
 }

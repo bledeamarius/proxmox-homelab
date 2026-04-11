@@ -32,7 +32,7 @@ sudo mkdir -p /opt/nextcloud/db /opt/nextcloud/data
 sudo mkdir -p /opt/jellyfin/config /opt/jellyfin/cache /mnt/media
 
 sudo mkdir -p /mnt/media/{movies,shows,downloads}
-sudo mkdir -p /opt/{qbittorrent,prowlarr,radarr,sonarr}/config
+sudo mkdir -p /opt/{qbittorrent,prowlarr,radarr,sonarr,bazarr}/config
 
 sudo chmod -R 755 /mnt/media
 sudo chown -R 1000:1000 /mnt/media

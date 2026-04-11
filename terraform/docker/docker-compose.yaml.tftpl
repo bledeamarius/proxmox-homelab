@@ -167,3 +167,16 @@ services:
     ports:
       - "8096:8096"
     restart: unless-stopped
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /opt/bazarr/config:/config
+      - /mnt/media:/media        # same mount as Radarr/Sonarr
+    ports:
+      - "6767:6767"
+    restart: unless-stopped

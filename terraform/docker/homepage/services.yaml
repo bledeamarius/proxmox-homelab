@@ -10,38 +10,53 @@
         href: http://homelab.internal:9000
         description: Docker management
         icon: portainer.png
+        server: my-docker
+        container: portainer
     - Homepage:
         href: http://homelab.internal:3000
         description: This dashboard
         icon: homepage.png
+        server: my-docker
+        container: homepage
 - Media:
     - Jellyfin:
         href: http://homelab.internal:8096
         icon: jellyfin.png
-        description: Media streaming
+        description: Media streaming & library
         server: my-docker
         container: jellyfin
 
     - Radarr:
         href: http://homelab.internal:7878
         icon: radarr.png
+        description: Movie collection manager
         server: my-docker
         container: radarr
 
     - Sonarr:
         href: http://homelab.internal:8989
         icon: sonarr.png
+        description: TV shows collection manager
         server: my-docker
         container: sonarr
 
     - qBittorrent:
         href: http://homelab.internal:8090
         icon: qbittorrent.png
+        description: Torrent download client
         server: my-docker
         container: qbittorrent
 
     - Prowlarr:
         href: http://homelab.internal:9696
         icon: prowlarr.png
+        description: Indexer & torrent source manager
         server: my-docker
         container: prowlarr
+    
+    - Bazarr:
+        href: http://homelab.internal:6767
+        icon: bazarr.png
+        description: Automatic subtitle downloader
+        server: my-docker
+        container: bazarr
